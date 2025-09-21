@@ -1,0 +1,4 @@
+name: frontend_flutter
+dependencies:
+  flutter:
+    sdk: flutter
