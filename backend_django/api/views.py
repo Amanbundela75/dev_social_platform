@@ -1,8 +1,10 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import UserProfile
-from .serializers import UserProfileSerializer
+from rest_framework import generics
+from .models import UserProfile, Post
+from .serializers import UserProfileSerializer, PostSerializer
+from .permissions import IsAuthenticatedOrReadOnly
 
 class RegisterOrLoginView(APIView):
     """
@@ -52,3 +54,19 @@ class RegisterOrLoginView(APIView):
                     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# Naya Post view add karein
+class PostListCreateView(generics.ListCreateAPIView):
+    """
+    View to list all posts or create a new one.
+    GET: Returns a list of all posts.
+    POST: Creates a new post.
+    """
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    # Is function ko override karke hum author ko set karenge
+    def perform_create(self, serializer):
+        # Flutter se hum 'author' field mein firebase_uid bhejenge
+        author_uid = self.request.data.get('author')
+        author_profile = UserProfile.objects.get(firebase_uid=author_uid)
+        serializer.save(author=author_profile)
