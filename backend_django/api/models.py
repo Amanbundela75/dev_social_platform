@@ -13,5 +13,18 @@ class UserProfile(models.Model):
     profile_picture_url = models.URLField(max_length=500, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
+# Naya Post model add karein
+class Post(models.Model):
+    id = models.AutoField(primary_key=True)
+    # Har post ek author se जुड़ा hoga
+    # on_delete=models.CASCADE ka matlab hai ki agar user delete hota hai, to uske posts bhi delete ho jayenge
+    author = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='posts')
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
-        return self.username
+        return f'{self.author.username}: {self.content[:30]}' # Post ka chhota sa preview
+
+    class Meta:
+        # Posts ko sabse naye se purane order mein sort karega
+        ordering = ['-created_at']
