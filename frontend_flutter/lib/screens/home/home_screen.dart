@@ -5,7 +5,7 @@ import '../../api/auth_service.dart';
 import '../../api/feed_service.dart';
 import '../../models/post_model.dart';
 import '../../widgets/post_card.dart';
-import 'create_post_screen.dart';
+import '../create_post/create_post_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
