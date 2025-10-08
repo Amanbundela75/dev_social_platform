@@ -44,8 +44,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dev_social_db',      # <-- Yahan apne database ka naam daalo
         'USER': 'postgres',           # <-- Aapka PostgreSQL username
-        'PASSWORD': 'your_password',  # <-- Aapka PostgreSQL password
+        'PASSWORD': 'amanbundela',  # <-- Aapka PostgreSQL password
         'HOST': 'localhost',          # '127.0.0.1' bhi daal sakte hain
         'PORT': '5432',               # Default port yahi hota hai
     }
 }
+
+DEBUG = True
+STATIC_URL = 'static/'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
