@@ -4,8 +4,6 @@
 
 India's own social media platform for app developers. A space to connect, share knowledge, and showcase projects. Inspired by Twitter and Reddit, built for the Indian developer community.
 
-
-
 ---
 
 ## ✨ Key Features
